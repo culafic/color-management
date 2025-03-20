@@ -23,7 +23,7 @@ const AddColorForm = () => {
     );
 
     if (colorExists) {
-      toast("Color already exists in the list");
+      toast("Duplicate color! This color is already in your list.");
       return;
     }
 

@@ -44,3 +44,11 @@ To check the code with ESLint, run the following command:
 ```bash
 npm run lint
 ```
+
+## Testing
+
+To run the tests, use the following command:
+
+```bash
+npm run test
+```
