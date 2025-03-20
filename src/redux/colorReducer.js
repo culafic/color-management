@@ -1,4 +1,4 @@
-import { colorSlice } from "./colorSlice";
+import { colorSlice } from "@redux/colorSlice";
 
 const colorReducer = colorSlice.reducer;
 

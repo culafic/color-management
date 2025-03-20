@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   colors: [],
+  currentColorHex: "#D97706",
   filter: "",
   loading: true,
 };
@@ -11,7 +12,7 @@ export const colorSlice = createSlice({
   initialState,
   reducers: {
     addColor: (state, action) => {
-      state.colors.push(action.payload);
+      state.colors = [action.payload, ...state.colors];
     },
     deleteColor: (state, action) => {
       state.colors = state.colors.filter(
@@ -27,8 +28,17 @@ export const colorSlice = createSlice({
     setLoading: (state, action) => {
       state.loading = action.payload;
     },
+    setCurrentColorHex: (state, action) => {
+      state.currentColorHex = action.payload;
+    },
   },
 });
 
-export const { addColor, deleteColor, setFilter, setColors, setLoading } =
-  colorSlice.actions;
+export const {
+  addColor,
+  deleteColor,
+  setFilter,
+  setColors,
+  setLoading,
+  setCurrentColorHex,
+} = colorSlice.actions;

@@ -1,15 +1,16 @@
-import { setColors, setLoading } from "./colorSlice";
+import { setColors, setLoading } from "@redux/colorSlice";
+import { toast } from "react-toastify";
 
 const fetchColorsFromAPI = () => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve([
-        { id: 1, name: "Red", hex: "#FF0000" },
-        { id: 2, name: "Green", hex: "#00FF00" },
-        { id: 3, name: "Blue", hex: "#0000FF" },
-        { id: 4, name: "Yellow", hex: "#FFFF00" },
-        { id: 5, name: "Purple", hex: "#800080" },
-        { id: 6, name: "Cyan", hex: "#00FFFF" },
+        { id: 1, name: "Pale Gold", hex: "#E9C698" },
+        { id: 2, name: "Coral", hex: "#FE8856" },
+        { id: 3, name: "Alizarin", hex: "#E0404B" },
+        { id: 4, name: "Purple", hex: "#6C3F77" },
+        { id: 5, name: "Rich Lilac", hex: "#AA64D6" },
+        { id: 6, name: "Pale Chestnut", hex: "#D9B5B9" },
       ]);
     }, 1000);
   });
@@ -22,6 +23,7 @@ export const fetchColors = () => async (dispatch) => {
     dispatch(setColors(colors));
   } catch (error) {
     console.error("Failed to fetch colors:", error);
+    toast("Failed to fetch colors");
   } finally {
     dispatch(setLoading(false));
   }

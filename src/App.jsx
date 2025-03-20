@@ -1,9 +1,15 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import AddColorForm from "./components/AddColorForm";
-import ColorList from "./components/ColorList";
-import FilterColors from "./components/FilterColors";
+import { ToastContainer } from "react-toastify";
 import { fetchColors } from "@redux/colorActions";
+
+import {
+  ColorList,
+  AddColorForm,
+  ColorPaletteDescription,
+} from "@components/ColorPalette";
+
+import { Loader, NavBar, Divider } from "@components/UI";
 
 function App() {
   const dispatch = useDispatch();
@@ -13,19 +19,23 @@ function App() {
     dispatch(fetchColors());
   }, [dispatch]);
 
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
-    <div className="max-w-[1440px] flex flex-col justify-center items-center">
-      <h1 className="text-3xl mb-4">Color Manager</h1>
-      {loading ? (
-        <p>Loading colors...</p>
-      ) : (
-        <>
+    <main className="flex flex-col  h-[100dvh]">
+      <NavBar />
+      <main className="flex items-center gap-2 border-r-2 xl:flex-row flex-col">
+        <section className="flex justify-center flex-col p-4">
+          <ToastContainer position="top-center" autoClose={3000} />
+          <ColorPaletteDescription />
           <AddColorForm />
-          <FilterColors />
-          <ColorList />
-        </>
-      )}
-    </div>
+        </section>
+        <Divider />
+        <ColorList />
+      </main>
+    </main>
   );
 }
 

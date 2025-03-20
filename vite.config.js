@@ -8,6 +8,8 @@ export default defineConfig({
   resolve: {
     alias: {
       "@redux": path.resolve(__dirname, "./src/redux"),
+      "@helpers": path.resolve(__dirname, "./src/helpers"),
+      "@components": path.resolve(__dirname, "./src/components"),
     },
   },
 });
