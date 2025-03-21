@@ -8,22 +8,18 @@ const ColorBadge = ({ color }) => {
   const dispatch = useDispatch();
   const [animationClass, setAnimationClass] = useState("color-card-in");
   const deleteDialogRef = useRef(null);
+
   const borderColor = darkenColor(color.hex);
   const fontColor = getContrastColor(color.hex);
 
-  const showModal = () => {
-    deleteDialogRef.current?.showModal();
-  };
+  const openDeleteModal = () => deleteDialogRef.current?.showModal();
+  const closeDeleteModal = () => deleteDialogRef.current?.close();
 
   const handleDelete = () => {
     setAnimationClass("color-card-out");
     setTimeout(() => {
       dispatch(deleteColor(color.id));
     }, 300);
-  };
-
-  const closeDeleteAccountModal = () => {
-    deleteDialogRef.current?.close();
   };
 
   return (
@@ -35,7 +31,7 @@ const ColorBadge = ({ color }) => {
     >
       <dialog className="" ref={deleteDialogRef}>
         <DeleteModal
-          closeDialog={closeDeleteAccountModal}
+          closeDialog={closeDeleteModal}
           handleDelete={handleDelete}
         />
       </dialog>
@@ -65,7 +61,7 @@ const ColorBadge = ({ color }) => {
       <button
         className="shadow-lg py-2 px-6 cursor-pointer"
         style={{ color: fontColor }}
-        onClick={() => showModal()}
+        onClick={() => openDeleteModal()}
       >
         Delete
       </button>

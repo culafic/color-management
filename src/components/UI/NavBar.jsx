@@ -1,14 +1,8 @@
-import { useSelector } from "react-redux";
 import { FilterColors } from "@components/ColorPalette";
 
-const NavBar = () => {
-  const { currentColorHex } = useSelector((state) => state.colors);
-
+const NavBar = ({ backgroundColor }) => {
   return (
-    <nav
-      className="border-gray-200"
-      style={{ backgroundColor: currentColorHex }}
-    >
+    <nav className="border-gray-200" style={{ backgroundColor }}>
       <div className="max-w-screen-xl mx-auto p-4">
         <div className="flex flex-2 justify-center">
           <div className="relative w-full max-w-md">
